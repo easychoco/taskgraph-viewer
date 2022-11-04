@@ -1,0 +1,71 @@
+{
+  "tasks": [
+    {
+      "name": "shokuzai",
+      "description": "食材を用意する",
+      "difficulty": "easy",
+      "notes": [
+        "そうめんの乾麺",
+        "めんつゆ",
+        "ネギ"
+      ]
+    },
+    {
+      "name": "chourikigu",
+      "description": "調理器具を用意する",
+      "difficulty": "easy",
+      "notes": [
+        "鍋",
+        "菜箸"
+      ]
+    },
+    {
+      "name": "nettou",
+      "description": "熱湯を用意する",
+      "difficulty": "easy",
+      "depends": [
+        "chourikigu"
+      ],
+      "notes": [
+        "水 = cold water",
+        "熱湯 = hot water"
+      ]
+    },
+    {
+      "name": "chouri",
+      "description": "調理する",
+      "difficulty": "easy",
+      "depends": [
+        "nettou",
+        "chourikigu",
+        "shokuzai"
+      ],
+      "notes": [
+        "熱湯",
+        "ゆでる",
+        "冷やす"
+      ]
+    },
+    {
+      "name": "taberu",
+      "description": "たべましょう",
+      "difficulty": "easy",
+      "depends": [
+        "chouri"
+      ],
+      "notes": [
+      ]
+    },
+    {
+      "name": "kataduke",
+      "description": "片付ける",
+      "difficulty": "easy",
+      "depends": [
+        "taberu"
+      ],
+      "notes": [
+        "片付けるまでが遠足です"
+      ]
+    }
+  ]
+}

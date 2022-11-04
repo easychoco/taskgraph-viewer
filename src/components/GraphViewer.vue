@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import MainPage from "~/pages/MainPage.vue"
+
+
 </script>
 
 <template>
-  <MainPage />
+  <div id="viewer" border m-5 rounded-lg>
+    main
+  </div>
 </template>
 
 <style scoped>
