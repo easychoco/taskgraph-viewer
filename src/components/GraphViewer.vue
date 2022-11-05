@@ -1,13 +1,10 @@
 <script setup lang="ts">
-
-
 </script>
 
 <template>
-  <div id="viewer" border m-5 rounded-lg>
-    main
+  <div id="viewer" border rounded-lg>
+    viewer
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

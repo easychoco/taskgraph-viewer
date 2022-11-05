@@ -1,10 +1,5 @@
-<script setup lang="ts">
-
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div flex>
-    Main
-  </div>
+  <div flex>Main</div>
 </template>
