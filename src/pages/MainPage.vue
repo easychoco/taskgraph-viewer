@@ -1,22 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { TaskGraph } from "~/models/TaskGraph";
 import GraphViewer from "~/components/GraphViewer.vue";
-import GraphInputArea from "~/components/GraphInputArea.vue";
+import GraphParseArea from "~/components/GraphParseArea.vue";
 
-const inputValue = ref("abc");
-defineExpose({ inputValue });
-
+const taskgraph = ref(new TaskGraph({ tasks: [] }));
+console.log(taskgraph.value);
 </script>
 
 <template>
-  <div>
-    <GraphViewer 
-      m-4
-    />
-    <GraphInputArea
-      m-4
-      v-model="inputValue"
-    />
-    {{ inputValue }}
+  <div flex flex-col m-4>
+    <GraphViewer />
+    {{ taskgraph.tasks }}
+    <GraphParseArea v-model="taskgraph" />
   </div>
 </template>
