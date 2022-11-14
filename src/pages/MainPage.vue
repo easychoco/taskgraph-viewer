@@ -13,28 +13,33 @@ json に parse
 表示する
 */
 
+const sorted = ref<number[]>([]);
+const critical = ref<number>([]);
+
 const userInput = ref("abc");
 const taskgraph: TaskGraph = computed(() => {
-  return tryParse(userInput.value);
+  return analyze(userInput.value);
 });
 
 // ここから関数
 
-function tryParse(inputValue: string): TaskGraph {
+function analyze(inputValue: string): TaskGraph {
   let result = [];
   try {
-    const parsed = JSON.parse(inputValue);
+    const taskgraph = tryParse(inputValue);
+    if (!taskgraph.tasks) {
+      throw new SyntaxError("taskgraph のフォーマットではありません");
+    }
 
-    const taskgraph = plainToClass(TaskGraph, parsed, {
-      excludeExtraneousValues: true,
-    });
+    result = taskgraph;
 
-    if (!taskgraph.tasks) throw new SyntaxError();
+    // 配列を初期化
+    sorted.value.splice(0);
+    critical.value.splice(0);
 
     const graph = buildDiGraph(taskgraph);
-    const sorted = topologicalSort(graph);
-    sorted.forEach((v) => {
-      result.push(taskgraph.tasks[v]);
+    topologicalSort(graph).forEach((v) => {
+      sorted.value.push(taskgraph.tasks[v]);
     });
   } catch (e) {
     if (e instanceof SyntaxError) {
@@ -45,6 +50,14 @@ function tryParse(inputValue: string): TaskGraph {
     }
   }
   return result;
+}
+
+function tryParse(inputValue: string): TaskGraph {
+  const parsed = JSON.parse(inputValue);
+  const taskgraph = plainToClass(TaskGraph, parsed, {
+    excludeExtraneousValues: true,
+  });
+  return taskgraph;
 }
 
 function buildDiGraph(taskgraph: TaskGraph): number[][] {
